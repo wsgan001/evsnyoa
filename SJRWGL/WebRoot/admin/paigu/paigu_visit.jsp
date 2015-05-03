@@ -49,6 +49,7 @@ function check() {
      }
 		
 	}
+	}
 	</script>
   </head>
   
