@@ -1,0 +1,31 @@
+<root>
+  <facet id="me.spring">
+    <node name="libprov">
+      <attribute name="config-id" value="me.spring_3.0"/>
+      <attribute name="copy-tlds" value="false"/>
+      <attribute name="provider-id" value="me-spring-library-provider"/>
+      <attribute name="version-id" value="none_none"/>
+    </node>
+  </facet>
+  <facet id="jst.web"/>
+  <facet id="java"/>
+  <facet id="jst.web.jstl"/>
+  <facet id="jst.jaxws">
+    <node name="libprov">
+      <attribute name="provider-id" value="runtime-library-provider"/>
+    </node>
+  </facet>
+  <facet id="wst.jsdt.web"/>
+  <facet id="me.hibernate"/>
+  <facet id="jpt.jaxb">
+    <node name="libprov">
+      <attribute name="config-id" value="jaxb.generic_2_1"/>
+      <attribute name="copy-tlds" value="true"/>
+      <attribute name="provider-id" value="me-jaxb-library-provider"/>
+      <attribute name="version-id" value="ri_2.1"/>
+    </node>
+    <node name="platform">
+      <attribute name="platform-id" value="generic_2_1"/>
+    </node>
+  </facet>
+</root>

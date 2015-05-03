@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+   <package name="admin"  extends="common" namespace="/admin">
+   
+     <action name="securityCodeImage" class="securityCodeImageAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+	
+        <action name="admin_login" class="usersManageAction" method="login">
+            <result name="toIndex" type="redirectAction" >
+				<param name="actionName">index</param>
+				<param name="namespace"></param>
+			</result>
+			<result name="login">/admin/login.jsp</result>
+			<result name="input">/admin/login.jsp</result>
+        </action>
+        
+          <!-- 增加一个登录客户端用户提示信息 -->
+          
+        <action name="tologinindex" class="usersManageAction" method="tologinindex">
+            <result name="toIndexjsp" type="redirectAction" >
+				<param name="actionName">toindexjsp</param>
+				<param name="namespace"></param>
+			</result>
+			<result name="login">/admin/tologinjsp.jsp</result>
+			<result name="input">/admin/tologinjsp.jsp</result>
+        </action>
+         <!-- 再增加一个登录客户端用户提示信息 -->
+        
+          <action name="toeventindex" class="usersManageAction" method="toeventindex">
+            <result name="toeventindex" type="redirectAction" >
+				<param name="actionName">index</param>
+				<param name="namespace">/admin</param>
+			</result>
+			<result name="login">/admin/toeventindex.jsp</result>
+			<result name="input">/admin/toeventindex.jsp</result>
+        </action>
+        
+        
+        <action name="loadEventView" class="usersManageAction" method="loadEventView">
+            <result name="toeventindex" type="redirectAction" >
+				<param name="actionName">loadEventToView.action?eventID=${eventId}</param>
+				<param name="namespace">/event</param>
+			</result>
+			<result name="login">/admin/toeventindex.jsp</result>
+			<result name="input">/admin/toeventindex.jsp</result>
+        </action> 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <action name="logout" class="usersManageAction" method="logout">
+            <result name="logout" type="redirect">
+				<param name="location">/admin/login.jsp</param>
+			</result>
+        </action>
+        
+            <action name="loadUsersList" class="usersManageAction" method="loadUsersList">
+            <result name="loadUsersList" >
+				<param name="location">/admin/admin.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+        </action>
+        
+            
+            
+            <action name="isExist" class="usersManageAction" method="isExist">
+            <result name="isExist" type="json">
+			<param name="root">action</param>
+			<param name="includeProperties">flag</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+        </action>
+        	<action name="addUsers" class="usersManageAction" method="addUsers">
+			<result name="addUsers" type="redirectAction">
+				<param name="actionName">loadUsersList</param>
+				<param name="namespace">/admin</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+		</action>
+		<action name="deleteUser" class="usersManageAction" method="deleteUserById">
+			<result name="deleteUserById" type="redirectAction">
+				<param name="actionName">loadUsersList</param>
+				<param name="namespace">/admin</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+		</action>
+		
+		  <action name="loadUser" class="usersManageAction" method="loadUserById">
+            <result name="loadUserById" >
+				<param name="location">/admin/editAdmin.jsp</param>
+			</result>
+			<result name="loadUserError" type="redirectAction">
+				<param name="actionName">loadUsersList</param>
+				<param name="namespace">/admin</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+        </action>
+        <action name="updateUser" class="usersManageAction" method="updateUser">
+           	<result name="updateUser" type="redirectAction">
+				<param name="actionName">loadUsersList</param>
+				<param name="namespace">/admin</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<result name="toloadUser" type="redirectAction">
+				<param name="actionName">loadUser</param>
+				<param name="namespace">/admin</param>
+				<param name="userId">${userId}</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+        </action>
+         <action name="*" >
+         <result>/admin/{1}.jsp</result>
+        </action>
+    </package>
+</struts>

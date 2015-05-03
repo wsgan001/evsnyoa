@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+   <package name="device"  extends="common" namespace="/device"> 
+        	<action name="addDevice" class="deviceManageAction" method="addDevice">
+        	    <result name="addDevice" type="redirectAction">
+				<param name="actionName">loadDeviceEditList.action?eventID=${eventID}</param>
+				<param name="namespace">/device</param>
+        	    </result>
+				<interceptor-ref name="myStack"/>
+		    </action>	
+		    <action name="updateDevice" class="deviceManageAction" method="updateDevice">
+		         <result name="updateDevice" type="redirectAction">
+				<param name="actionName">loadDeviceEditList.action?eventID=${eventID}</param>
+				<param name="namespace">/device</param>
+		         </result>
+		         <interceptor-ref name="myStack"/>
+		    </action>
+            
+            <action name="updateDeviceAdmin" class="deviceManageAction" method="updateDeviceAdmin">
+		         <result name="updateDeviceAdmin" type="redirectAction">
+				<param name="actionName">loadDeviceList.action?eventID=${eventID}</param>
+				<param name="namespace">/device</param>
+		         </result>
+		         <interceptor-ref name="myStack"/>
+		    </action>
+		    
+		    <action name="loadDeviceToAdEdit" class="deviceManageAction" method="loadDeviceToAdEdit">
+			<result name="loadDeviceToAdEdit">
+			<param name="location">/admin/device/device_admin_edit.jsp</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+		    </action>
+		    
+		    <action name="loadDeviceToCmEdit" class="deviceManageAction" method="loadDeviceToCmEdit">
+			<result name="loadDeviceToCmEdit">
+			<param name="location">/admin/device/device_common_edit.jsp</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+		    </action>
+		    
+		    <action name="loadDeviceList" class="deviceManageAction" method="loadDeviceList">
+			<result name="loadDeviceList">
+			<param name="location">/admin/device/device_admin_view.jsp</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+		    </action>
+		    
+		    <action name="loadDeviceEditList" class="deviceManageAction" method="loadDeviceEditList">
+			<result name="loadDeviceEditList">
+			<param name="location">/admin/device/device_common_view.jsp</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+		    </action>
+		    
+
+		<action name="saveDeviceWithReturnId" class="deviceManageAction" method="saveDeviceWithReturnId">
+		<interceptor-ref name="myStack"/>
+		</action>
+         <action name="updateDeviceByDeviceId" class="deviceManageAction" method="updateDeviceByDeviceId">
+		<interceptor-ref name="myStack"/>
+		</action>
+
+		   <action name="loadDeviceToEdit" class="deviceManageAction" method="loadDeviceToEdit">
+			 <result name="loadDeviceToEdit" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+			 </result>
+				<interceptor-ref name="myStack"/>
+		    </action>
+		   
+		    <action name="deleteDevice" class="deviceManageAction"
+			method="deleteDevice">
+			<result name="deleteDevice" type="redirectAction">
+				<param name="actionName">loadDeviceEditList.action?eventID=${eventID}</param>
+				<param name="namespace">/device</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		   
+    </package>
+</struts>

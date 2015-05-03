@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="journal" extends="common" namespace="/journal">
+		<!-- <action name="addJournal" class="journalManageAction" method="addJournal">
+			<result name="addJournal" type="redirect">
+			  <param name="location">/admin/journal_view.jsp</param> 
+			     
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>-->
+		  <action name="addJournal" class="journalManageAction" method="addJournal">
+			<result name="addJournal" type="redirect">
+			 <param name="location">/journal/loadJournalListAdmin.action?eventID=${eventID}</param>   
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		
+		<action name="editJournal" class="journalManageAction" method="editJournal">
+		<result name="editJournal" type="redirectAction">
+		   <param name="actionName">loadJournalListAdmin.action?eventID=${jandeID}</param>
+				<param name="namespace">/journal</param>
+				<param name="actionMsg">${actionMsg}</param>
+		
+		</result>
+	    </action>
+	    
+	    <action name="deleteJournal" class="journalManageAction" method="deleteJournal">
+		<result name="deleteJournal" type="redirectAction">
+		   <param name="actionName">loadJournalListAdmin.action?eventID=${jandeID}</param>
+				<param name="namespace">/journal</param>
+				<param name="actionMsg">${actionMsg}</param>
+		</result>
+	    </action>
+		
+		
+		<action name="loadJournalList" class="journalManageAction" method="loadJournalList">
+			<result name="loadJournalList">
+				<param name="location">/admin/eventgl_journal.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		<action name="loadJournalToView" class="journalManageAction" method="loadJournalToView">
+			<result name="loadJournalToView">
+				<param name="location">/admin/eventgl_journal_view.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		<action name="loadJournalListAdmin" class="journalManageAction" method="loadJournalListAdmin">
+			<result name="loadJournalListAdmin">
+				<param name="location">/admin/eventgl_journal_admin.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		
+		<action name="loadJournalToEdit" class="journalManageAction" method="loadJournalToEdit">
+			<result name="loadJournalToEdit">
+				<param name="location">/admin/eventgl_journal_edit.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		
+		
+	</package>
+</struts>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="common"  extends="json-default">
+	<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+		<interceptors>
+			<interceptor name="loginedCheck" class="com.xnjd.hynm.interceptor.LoginedCheckInterceptor"/>
+		<!-- 加到自己设置的拦截器栈里边去 -->
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="loginedCheck"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+           </interceptor-stack>
+		</interceptors>	    
+		<!-- 定义全局result -->
+		<global-results>
+			<!-- 定义名为exception的全局result -->
+		    <result name="exception">/exception.jsp</result>
+		    <result name="tologin">/admin/tologin.jsp</result>
+		    <result name="noprim">/admin/error.htm</result>	
+		</global-results>
+
+		<!-- 定义全局异常映射 -->
+		<global-exception-mappings>
+			<!-- 捕捉到Exception异常(所有异常)时跳转到exception所命名的视图上 -->
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>	
+        
+		
+    </package>
+
+    <!-- Add packages here -->
+
+</struts>

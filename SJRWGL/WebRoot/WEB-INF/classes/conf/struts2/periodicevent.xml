@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+	   <package name="periodicevent" extends="common" namespace="/periodicevent" >
+	        
+	        <action name="loadPeriodicEvent" class="periodicEventAction" method="loadPeriodicEvent">
+	            <result name="loadPeriodicEvent">
+	            <param name="loaction">/admin/event_fp.jsp</param>
+	            </result>
+	            <interceptor-ref name="myStack"/>
+	        </action>
+	        <action name="loadAllPeriodicEvent" class="periodicEventAction" method="loadAllPeriodicEvent">
+	             <result name="loadAllPeriodicEvent"> 
+	                 <param name="location">/admin/periodicevent_ck.jsp</param>
+	             </result>
+	             <interceptor-ref name="myStack"/>
+	        </action>
+	        <action name="loadPeriodicEventRelaEvent" class="periodicEventAction" method="loadPeriodicEventRelaEvent">
+	             <result name="loadPeriodicEventRelaEvent"> 
+	                 <param name="location">/admin/periodic_relaevent.jsp</param>
+	             </result>
+	             <interceptor-ref name="myStack"/>
+	        </action>
+	        
+	        <action name="addPeriodicEvent" class="periodicEventAction" method="addPeriodicEvent">
+	            <result name="addPeriodicEventSuccess" type="redirectAction">
+	                <param name="actionName">loadAllPeriodicEvent</param>
+	                <param name="namespace">/periodicevent</param> 
+	                <param name="actionMsg">${actionMsg}</param>   
+	            </result>
+	            <result name="addEventError" type="redirectAction">
+					<param name="actionName">loadAllPeriodicEvent</param>
+					<param name="namespace">/periodicevent</param>
+					<param name="actionMsg">${actionMsg}</param>
+			</result>
+	            <interceptor-ref name="myStack"/>
+	        </action>
+	        
+	       <!--  loadPeriodicEventRelaEvent
+	        <action name="loadPeriodicEventRelaEvent" class="periodicEventAction" method="loadPeriodicEventRelaEvent">
+	             <result name="loadPeriodicEventRelaEvent"> 
+	                 <param name="location">/admin/periodicevent_ck.jsp</param>
+	             </result>
+	             <interceptor-ref name="myStack"/>
+	        </action> -->
+	        <action name="loadPeriodicEventById" class="periodicEventAction" method="loadPeriodicEventById">
+			<result name="selectSuccess">
+				<param name="location">/admin/periodic_event_dg.jsp</param>
+			</result>
+			<result name="selectError">
+				 <param name="actionName">loadAllPeriodicEvent</param>
+	             <param name="namespace">/periodicevent</param>
+	             <param name="actionMsg">${actionMsg}</param> 
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<action name="deletePeriodicEventById" class="periodicEventAction" method="deletePeriodicEventById">
+			<result name="deleteSuccess" type="redirectAction">
+					 <param name="actionName">loadAllPeriodicEvent</param>
+	                <param name="namespace">/periodicevent</param>
+	                <param name="actionMsg">${actionMsg}</param> 
+			</result>
+			<result name="deleteError" type="redirectAction">
+					 <param name="actionName">loadAllPeriodicEvent</param>
+	                <param name="namespace">/periodicevent</param>
+	                <param name="actionMsg">${actionMsg}</param> 
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<action name="updatePeriodicEventById" class="periodicEventAction" method="updatePeriodicEventById">
+			<result name="updatePeriodicEventSuccess" type="redirectAction">
+					 <param name="actionName">loadAllPeriodicEvent</param>
+	                <param name="namespace">/periodicevent</param>
+	                <param name="actionMsg">${actionMsg}</param> 
+			</result>
+			<result name="updatePeriodicEventError" type="redirectAction">
+					 <param name="actionName">loadAllPeriodicEvent</param>
+	                <param name="namespace">/periodicevent</param>
+	                <param name="actionMsg">${actionMsg}</param> 
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<action name="updateEventIsOpenState" class="periodicEventAction" method="updateEventIsOpenState">
+			<result name="updateIsOpenSuccess" type="redirectAction">
+					 <param name="actionName">loadAllPeriodicEvent</param>
+	                <param name="namespace">/periodicevent</param>
+	                <param name="actionMsg">${actionMsg}</param> 
+			</result>
+			<result name="updateIsOpenError" type="redirectAction">
+					 <param name="actionName">loadAllPeriodicEvent</param>
+	                <param name="namespace">/periodicevent</param>
+	                <param name="actionMsg">${actionMsg}</param> 
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+	   </package>
+	</struts>

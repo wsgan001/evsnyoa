@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="customer" extends="common" namespace="/customer">
+
+		<action name="isExist" class="customerManageAction" method="isExist">
+			<result name="isExist" type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">flag</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		<action name="addCustomer" class="customerManageAction" method="addCustomer">
+			<result name="addCustomer" type="redirectAction">
+				<param name="actionName">loadCustomerList</param>
+				<param name="namespace">/customer</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+
+			<interceptor-ref name="myStack" />
+		</action>
+		<action name="deleteCustomer" class="customerManageAction"
+			method="deleteCustomerById">
+			<result name="deleteCustomerById" type="redirectAction">
+				<param name="actionName">loadCustomerList</param>
+				<param name="namespace">/customer</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+            
+           
+		<action name="loadCustomer" class="customerManageAction"
+			method="loadCustomerById">
+			<result name="loadCustomerById">
+				<param name="location">/admin/customer/editcus_admin.jsp</param>
+			</result>
+			<result name="loadCustomerError" type="redirectAction">
+				<param name="actionName">loadCustomerList</param>
+				<param name="namespace">/customer</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+
+		<action name="updateCustomer" class="customerManageAction"
+			method="updateCustomer">
+			<result name="updateCustomer" type="redirectAction">
+				<param name="actionName">loadCustomerList</param>
+				<param name="namespace">/customer</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<result name="toloadCustomer" type="redirectAction">
+				<param name="actionName">loadCustomer</param>
+				<param name="namespace">/customer</param>
+				<param name="userId">${customerId}</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+
+		<action name="loadCustomerList" class="customerManageAction"
+			method="loadCustomerList">
+			<result name="loadCustomerList">
+				<param name="location">/admin/customer/cus_admin.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		<!--根据地点查询客户 -->
+		<action name="findCustomerList" class="customerManageAction"
+			method="findCustomerList">
+			<result name="findCustomerList">
+				<param name="location">/admin/customer/cus_admin.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+
+
+       
+       <action name="getCustomerHql" class="customerManageAction" method="getCustomerHql"></action>
+       <action name="getCustomerList" class="customerManageAction" method="getCustomerList"></action>
+       
+       <action name="findDimCustomer" class="customerManageAction" method="findDimCustomer" /> 
+
+	</package>
+</struts>

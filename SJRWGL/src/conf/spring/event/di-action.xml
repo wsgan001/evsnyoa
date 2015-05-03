@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+            http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+            http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context-3.1.xsd"
+	default-lazy-init="true">
+	<bean name="eventManageAction" class="com.xnjd.hynm.action.EventManageAction" scope="prototype">
+	     <property name="eventManageService" ref="eventManageService" />
+	      <property name="usersManageService" ref="usersManageService" />
+	</bean>
+	<bean name="sendMailAction" class="com.xnjd.hynm.action.SendMailAction" scope="prototype">
+	     <property name="eventManageService" ref="eventManageService" />
+	     <property name="deviceManageService" ref="deviceManageService" />
+	</bean>
+	<bean name="periodicEventAction" class="com.xnjd.hynm.action.PeriodicEventAction" scope="prototype">
+	     <property name="eventManageService" ref="eventManageService"/>
+	     <property name="usersManageService" ref="usersManageService"/>
+	     <property name="regularlyCreateEvent" ref="regularlyCreateEvent"/>
+	</bean>
+	
+<!-- 
+	<bean name="regularlySendMail" class="com.xnjd.hynm.listener.RegularlySendMail" scope="prototype">
+	    <property name="eventManagerService" ref="eventManagerService"/>
+		
+	</bean> 
+ -->
+	<bean name="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	   <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!--定时发送邮件  一：配置定时任务1  -->
+	<bean id="SchedulerTask3" class="org.springframework.scheduling.quartz.JobDetailBean">
+	     <property name="jobClass">
+	        <value>com.xnjd.hynm.listener.RegularlyCreateEvent</value>
+	     </property>
+	     <property name="jobDataAsMap">
+	       <map>
+	        <entry key="hibernateTemplate">
+	           <ref bean="hibernateTemplate"/>
+	        </entry>
+	          <entry key="usersManageService">
+	           <ref bean="usersManageService"/>
+	        </entry>
+	       </map>
+	     </property>
+	</bean>
+	
+	<!--二：配置任务1定时时间  -->
+	<bean id="SchedulerTaskTrigger3" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="SchedulerTask3"/>
+		<property name="cronExpression">
+		  <value>0 0 08 ? * *</value>
+		</property>
+	</bean>
+	<!--三：启动任务1  -->
+   <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+           <list>
+               <ref bean="SchedulerTaskTrigger3"/>
+           </list>
+        </property>
+   </bean>
+   
+	
+</beans>

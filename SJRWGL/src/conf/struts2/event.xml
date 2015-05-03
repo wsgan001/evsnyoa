@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+   <package name="event"  extends="common" namespace="/event">
+   
+   <action name="loadEvent" class="eventManageAction" method="loadAllEvent">
+			<result name="loadAllEvent">
+					<param name="location">/admin/event_dg.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		<action name="loadOtherEvent" class="eventManageAction" method="loadOtherEvent">
+		 <result name="loadOtherEvent">
+		 <param name="location">/admin/event_dg.jsp</param>
+		 </result>
+		</action>
+		<!-- 增加toloadEvent事件显示 -->
+		
+		<action name="toloadevent" class="eventManageAction" method="loadAllEventIndex">
+		    <result name="loadAllEventIndex">
+					<param name="location">/admin/toevent.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		
+		<action name="add_event" class="eventManageAction" method="addEvent">
+			<result name="addEvent" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<result name="addEventError" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		<action name="loadUndispatchEvent" class="eventManageAction" method="loadUndispatchEvent">
+			<result name="loadUndispatchEvent">
+					<param name="location">/admin/event_fp.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		 <action name="loadUnPassedEvent" class="eventManageAction" method="loadUnPassedEvent">
+			<result name="loadUnPassedEvent">
+					<param name="location">/admin/event_sh.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<action name="loadEvaluationEvent" class="eventManageAction" method="loadEvaluationEvent">
+			<result name="loadEvaluationEvent">
+					<param name="location">/admin/evaluation.jsp</param>   <!-- 修改统计后的内容显示的问题 -->
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		 
+		 <action name="loadCompletedEvent" class="eventManageAction" method="loadCompletedEvent">
+			<result name="loadCompletedEvent">
+					<param name="location">/admin/eventtj.jsp</param>   <!-- 修改统计后的内容显示的问题 -->
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		 <action name="loadEventToDispatch" class="eventManageAction" method="loadEventToDispatch">
+			<result name="loadEventToDispatch">
+					<param name="location">/admin/event_view_fp.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		
+		
+		 <action name="dispatchEvent" class="eventManageAction" method="dispatchEvent">
+			<result name="dispatchEvent" type="redirectAction">
+				<!-- <param name="actionName">loadUndispatchEvent</param> -->
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		 <action name="loadEventToView" class="eventManageAction" method="loadEventToView">
+			<result name="loadEventToView">
+					<!--  <param name="location">/admin/event_view_dj.jsp</param>-->
+					<param name="location">/admin/event_dg_view.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		   <action name="loadEventView" class="eventManageAction" method="loadEventView">
+			<result name="loadEventToView">
+					<param name="location">/event/loadEventToView.action?eventID=${eventID}</param>
+			</result>
+			<result name="login">/admin/login.jsp</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		   
+		
+		
+		<action name="loadEventByTjView" class="eventManageAction" method="loadEventByTjView">
+			<result name="loadEventByTjView">
+					<param name="location">/admin/event_view_tj.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		 <action name="loadEventByPjView"  class="eventManageAction" method="loadEventByPjView" >
+		   <result name="loadEventByPjView">
+		         <param name="location">/admin/evaluation_view.jsp</param>
+		   </result>
+		    <interceptor-ref name="myStack"/>
+		 </action>
+		 
+		 <action name="loadEventToPass" class="eventManageAction" method="loadEventToPass">
+			<result name="loadEventToPass">
+					<param name="location">/admin/event_view_sh.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<action name="loadEventToApply" class="eventManageAction" method="loadEventToApply">
+			<result name="loadEventToApply">
+					<param name="location">/admin/eventgl_apply_final.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		<action name="loadEventToLate" class="eventManageAction" method="loadEventToLate">
+			<result name="loadEventToLate">
+					<param name="location">/admin/eventgl_apply_late.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+	
+	    <!-- 申请延期后 -->
+	    <action name="loadEventToLateHand" class="eventManageAction" method="loadEventToLateHand">
+			<result name="loadEventToLateHand">
+					<param name="location">/admin/eventgl_apply_latehand.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<!-- 增加事件延期申请处理-->
+		<action name="applyEventLate" class="eventManageAction" method="applyEventLate">
+			<result name="applyEventLate">
+					<param name="location">/admin/eventgl_apply_latefinal.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<!--增加事件延期申请后的处理-->
+		<action name="applyEventLateHand" class="eventManageAction" method="applyEventLateHand">
+			<result name="applyEventLateHand">
+					<param name="location">/admin/eventgl_apply_latefinal.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		 <action name="passEvent" class="eventManageAction" method="passEvent">
+			<result name="passEvent" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		 <action name="noPassEvent" class="eventManageAction" method="noPassEvent">
+			<result name="noPassEvent" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		<action name="applyEvent" class="eventManageAction" method="applyEvent">
+			<result name="applyEvent" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		<!-- 事件执行者显示 -->
+		 <action name="selectulist" class="eventManageAction" method="selectulist">
+			<result name="true">
+					<param name="location">/admin/eventtj.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action> 
+		<!-- 新增查询统计以便对事件进行评价 -->
+		<action name="evaluationlist" class="eventManageAction" method="evaluationlist">
+			<result name="true">
+					<param name="location">/admin/evaluation.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action> 
+		  
+		<action name="loadCompletedExport" class="eventManageAction" method="loadCompletedEvent">
+			<result name="loadCompletedExport">
+					<param name="location">/admin/eventtj.jsp</param>   <!-- 修改统计后的内容显示的问题 -->
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+	
+		<action name="deleteEvent" class="eventManageAction" method="deleteEventById">
+			<result name="deleteEventById" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+				<interceptor-ref name="myStack"/>
+		</action>
+   
+		<!-- 新添加的增加事件 -->
+		 <action name="setEvent" class="eventManageAction" method="setEvent">
+			<result name="setEvent">
+					<param name="location">/admin/event_dg2.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action> 
+		
+		<action name="loadUser" class="eventManageAction" method="loadUser"></action> <!-- 跟下拉列表框有关的用户设置 -->
+		
+		<!-- 添加事件处理模块 -->
+		
+		<action name="loadEventToHand" class="eventManageAction" method="loadEventToHand">
+			<result name="loadEventToHand">
+					<param name="location">/admin/eventgl.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+		<!-- 添加编辑模块功能 -->
+		<action name="loadEventToEdit" class="eventManageAction" method="loadEventToEdit">
+            <result name="loadEventToEdit" >
+				<param name="location">/admin/editEvent.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+        </action>
+        
+        <action name="updateEvent" class="eventManageAction" method="updateEvent">
+             <result name="updateEvent" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+				<param name="namespace">/event</param>
+				<param name="actionMsg">${actionMsg}</param>
+			</result>
+        </action>
+        <!-- 导出execl表 -->
+      <action name="export" class="com.xnjd.hynm.action.ExportXslAction">
+		    <result name="success" type="stream">
+			<param name="contentType">application/vnd.ms-excel</param>
+			<param name="contentDisposition">attachment;filename="eventinfo.xls"</param>
+			<param name="inputName">excelFile</param>
+			</result>
+	</action> 
+	<!-- 加载周期性事件 -->
+		<action name="loadPeriodicEventToDispatch" class="eventManageAction" method="loadPeriodicEventToDispatch">
+			<result name="loadPeriodicEventToDispatch">
+					<param name="location">/admin/eventdg.jsp</param>
+			</result>
+			<interceptor-ref name="myStack"/>
+		</action>
+		
+       </package>
+</struts>

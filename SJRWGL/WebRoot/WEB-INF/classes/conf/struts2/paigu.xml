@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="paigu" extends="common" namespace="/paigu">
+		<action name="addPaigu" class="paiguManageAction" method="addPaigu">
+			<!--<result name="addPaigu" type="redirect">
+			  <param name="location">/admin/paigu/paigu_viewend.jsp</param> 
+			 </result>  -->
+			 <result name="addPaigu" type="redirectAction">
+			   <param name="actionName">loadEvent</param>
+			   <param name="namespace">/event</param>
+			   <param name="actionMsg">${actionMsg}</param>
+			 </result>
+			<interceptor-ref name="myStack" />
+
+		</action>
+		
+		<action name="loadPaiguToHand" class="paiguManageAction" method="loadPaiguToHand">
+			<result name="loadPaiguToHand">
+				<param name="location">/admin/paigu/paigu_viewend.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action> 
+		
+		<action name="paiguHand" class="paiguManageAction" method="paiguHand">
+			<result name="paiguHand" type="redirectAction">
+				<param name="actionName">loadEvent</param>
+			   <param name="namespace">/event</param>
+			   <param name="actionMsg">${actionMsg}</param>
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		
+		
+		<action name="loadPaiguByEventId" class="paiguManageAction" method="loadPaiguByEventId">
+		<result name="loadPaiguByEventId">
+		  <param name="location">/admin/paigu/paigu_firstplan.jsp</param>
+		</result>
+		</action>
+		
+		<action name="loadPaiguToDevice" class="paiguManageAction" method="loadPaiguToDevice">
+		<result name="loadPaiguToDevice">
+		  <param name="location">/admin/device/device_add.jsp</param>
+		</result>
+		</action>
+		
+		<!-- <action mame="loadPaiguByEventId" class="paiguManageAction" method="loadPaiguByEventId">
+			<result name="loadPaiguByEventId">
+				<param name="location">/admin/paigu/paigu_firstplan.jsp</param>
+			</result>
+			<interceptor-ref name="myStack" />
+			</action>  -->
+	
+	</package>
+</struts>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+  <package name="evaluation" extends="common" namespace="/evaluation">
+		<action name="addEvaluation" class="evaluationManageAction" method="addEvaluation">
+			<result name="addEvaluation" type="redirect">
+			  <param name="location">/admin/evaluation_view_wc.jsp</param> 
+			</result>
+			<interceptor-ref name="myStack" />
+		</action>
+		
+		
+	</package>
+
+</struts>

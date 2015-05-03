@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 设置Struts2.1的Action默认后缀为.action与.do -->
+	<constant name="struts.action.extension" value="action" />
+
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+	<!-- 设置Struts2.1应用是否处于开发模式，通常在开发调试阶段设为true,正式上线后可设为false -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 设置Struts2.1的默认主题为simple -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 设置Struts2.1默认的ObjectFactory为spring -->
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.parser" value="jakarta" />
+	<constant name="struts.multipart.maxSize" value="120971520" />
+		<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+	<!-- **************** 具体业务逻辑模块 ****************** -->
+	<include file="conf/struts2/default.xml"></include>
+	<include file="conf/struts2/common.xml"></include>
+	<include file="conf/struts2/admin.xml"></include>
+	<include file="conf/struts2/event.xml"></include>
+	<include file="conf/struts2/journal.xml"></include>
+	<include file="conf/struts2/evaluation.xml"></include>
+	<include file="conf/struts2/jfreechart.xml"></include>
+	<include file="conf/struts2/filedownload.xml"></include>
+	<include file="conf/struts2/charttest.xml"></include>
+	<include file="conf/struts2/paigu.xml"></include>
+	<include file="conf/struts2/customer.xml"></include>
+	<include file="conf/struts2/device.xml"></include>
+	<include file="conf/struts2/sendmail.xml"></include>
+	<include file="conf/struts2/periodicevent.xml"></include>
+	<include file="conf/struts2/search.xml"></include>
+
+</struts>

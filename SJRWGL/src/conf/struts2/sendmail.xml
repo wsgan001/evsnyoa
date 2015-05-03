@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+	    <package name="sendmail" extends="common" namespace="/sendmail">
+	    <!--执行人->库管人员  -->
+	        <action name="findInventoryKeeper" class="com.xnjd.hynm.action.SendMailAction" method="findInventoryKeeper" />
+	        <action name="findAuditPerson" class="com.xnjd.hynm.action.SendMailAction" method="findAuditPerson"/>
+	        <action name="findEventNameById" class="com.xnjd.hynm.action.SendMailAction" method="findEventNameById"/>
+	        <action name="findEventDeviceInfoByEventId" class="com.xnjd.hynm.action.SendMailAction" method="findEventDeviceInfoByEventId"/>
+	        <action name="findAddressor" class="com.xnjd.hynm.action.SendMailAction" method="findAddressor"/>
+	        <action name="sendMail" class="com.xnjd.hynm.action.SendMailAction" method="sendMail"/>
+	        <!--end   -->
+	        
+	   	<!--库管->执行人  -->
+	   		<action name="findCLSJEmailAddress" class="com.xnjd.hynm.action.SendMailAction" method="findCLSJEmailAddress" />
+	   		<action name="findEventNameById" class="com.xnjd.hynm.action.SendMailAction" method="findEventNameById" />
+	   		<action name="findSHManWithKGManEmailAddress" class="com.xnjd.hynm.action.SendMailAction" method="findSHManWithKGManEmailAddress" />
+	   		<action name="findKGEmailContent" class="com.xnjd.hynm.action.SendMailAction" method="findKGEmailContent" />
+	   		<!--end  -->
+	    </package>
+	</struts>
