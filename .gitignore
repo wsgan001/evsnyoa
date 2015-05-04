@@ -2,3 +2,6 @@ SJRWGL/WebRoot/WEB-INF/lib/
 SJRWGL/.svn/
 *.class
 .metadata/
+SJRWGL/.settings/org.springframework.ide.eclipse.beans.core.prefs
+SJRWGL/.settings/com.genuitec.jboss.ide.eclipse.xdoclet.run.prefs
+SJRWGL/.settings/org.eclipse.wst.xsl.core.prefs
